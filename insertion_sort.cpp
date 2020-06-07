@@ -1,42 +1,44 @@
-#include<iostream>
-#define ll long long
+#include <bits/stdc++.h>
+
 using namespace std;
 
-void insertion_sort(ll A[], ll n){
-  ll i, j, key;
-  for(j=1; j<n; ++j){
-    key = A[j];
-    i = j-1;
-    cout<<"\n";
-    while(i>=0 && key<A[i]){
-      cout<<A[i]<<" =>  "<<i<< " \t";
-      A[i+1] = A[i];
-      i = i-1;
+void insertion_sort(vector<int>& a){
+    int n = a.size();
+    int i, j, key;
+
+    for(j=1; j<n; ++j){
+        key = a[j];
+        i = j-1;
+        while(i>=0 && a[i] > key){
+            a[i+1] = a[i];
+            --i;
+        }
+        a[i+1] = key;
     }
-    cout<<"\n";
-    A[i+1] = key;
-  }
+
 }
 
 int main(){
-  ll n, i;
-  cin>>n;
-  ll A[n];
-  for(i=0; i<n; ++i) cin>>A[i];
+    int n = 10;
+    vector<int> a(10);
+    srand (time(NULL));
+    cout<<"Before sort \n";
 
-  cout<<"before sorting : \n";
-  for ( i = 0; i < n; ++i)
-  {
-    cout<<A[i]<<" ";
-  }
-  
-  insertion_sort(A, n);
+    for(int i=0; i<n; ++i){
+        a[i] = rand() % 1000;
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
 
-  cout<<"\nAfter sorting : \n";
-  for ( i = 0; i < n; ++i)
-  {
-    cout<<A[i]<<" ";
-  }
-  cout<<"\n";
-  return 0;
+    insertion_sort(a);
+
+    cout<<"After sort \n";
+
+    for(int i=0; i<n; ++i){
+
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
 }
